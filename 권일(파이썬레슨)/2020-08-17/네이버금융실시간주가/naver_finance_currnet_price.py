@@ -1,9 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
 
-codes = ['096530', '010130']
+codes = ['096530', '010130'] # 종목코드 리스트
+prices = [] # 가격정보가 담길 리스트
 
-prices = []
 for code in codes:
     url = 'https://finance.naver.com/item/main.nhn?code=' + code
 
