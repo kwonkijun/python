@@ -4,7 +4,7 @@ import pyautogui as pg
 company_name = pg.prompt(text='제약회사명을 입력하세요', title='Message', default='입력하세요')
 
 excel = win32com.client.Dispatch("Excel.Application")
-path = rf'C:\Users\kwonkijun\Desktop\프로젝트(최신)\업무자동화\합계자동계산\{company_name}.xls'
+path = rf'C:\Users\kwonkijun\Desktop\{company_name}.xls'
 workbook = excel.Workbooks.Open(path)
 
 sheet = workbook.Sheets('work')
@@ -33,3 +33,4 @@ while i <= (totalNum - 1):
     else:
         i = i + 1    
     
+workbook.SaveAs(rf'C:\Users\kwonkijun\Desktop\{company_name}-data.xls')

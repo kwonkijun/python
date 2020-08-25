@@ -3,7 +3,7 @@ import pyautogui as pg
 
 # 상수 선언
 MIN_ROW_NUM = 4
-PATH = 'Users\kwonkijun\Desktop\프로젝트(최신)\파이썬\업무자동화\복사붙여넣기_자동화'
+PATH = 'Users\kwonkijun\Desktop'
 
 # 사용자 입력 데이터
 company_name = pg.prompt(text='제약회사명을 입력하세요', title='Message', default='입력하세요')
@@ -37,27 +37,37 @@ for i in range(2, max_row):
     count = sheet.Range(f'K{i}').Value # 수량
     data_list.append([date, name, count])
 
+print("data file max_row : ", max_row)
+print("data list : ", data_list)
 # 데이터 비교 후 붙여넣기 
-path = rf'C:\{PATH}\{company_name}-origin.xlsx'
+path = rf'C:\{PATH}\{company_name}-origin.xls'
 workbook_origin = excel.Workbooks.Open(path)
 sheet = workbook_origin.Sheets('에스디메디칼')
 
 max_row = find_max_row('origin')    
-curr_row = max_row
+curr_row = max_row - 1
+print("origin file max_row : ", max_row)
 
 for data in data_list:
+    is_exist_row = False
+    # 데이터 형식 변경(날짜, 수량)
+    date = data[0].replace("/", "-")
+    count = int(data[2])
     while curr_row >= MIN_ROW_NUM:
         if sheet.Range(f'C{curr_row}').Value == data[1] :
-            sheet.Range(f'A{curr_row}:P{curr_row}').Copy()
+            sheet.Range(f'A{curr_row}:Q{curr_row}').Copy()
             sheet.Range(f'A{max_row}').Insert()
-            # 데이터 형식 변경(날짜, 수량)
-            date = data[0].replace("/", "-")
-            count = int(data[2])
             sheet.Range(f'A{max_row}').Value = date
             sheet.Range(f'G{max_row}').Value = count
-            max_row = max_row + 1
+            is_exist_row = True
             break
         curr_row = curr_row - 1
+    if(not is_exist_row):
+        sheet.Range(f'C{max_row}').Value = data[1]
+        sheet.Range(f'A{max_row}').Value = date
+        sheet.Range(f'G{max_row}').Value = count
+    max_row = max_row + 1
+    curr_row = max_row - 1 # 초기화
+        
 
-workbook_origin.SaveAs(rf'C:\{PATH}\{company_name}-origin-result.xlsx')
-excel.quit()
+workbook_origin.SaveAs(rf'C:\{PATH}\{company_name}-origin-result.xls')
