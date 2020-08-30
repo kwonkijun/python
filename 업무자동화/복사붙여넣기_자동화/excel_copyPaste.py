@@ -7,6 +7,7 @@ PATH = 'Users\kwonkijun\Desktop'
 
 # 사용자 입력 데이터
 company_name = pg.prompt(text='제약회사명을 입력하세요', title='Message', default='입력하세요')
+sheet_name = pg.prompt(text='매입회사명을 입력하세요', title='Message', default='에스디메디칼/에스비약품')
 
 # 입력할 데이터 가져오기 
 excel = win32com.client.Dispatch("Excel.Application")
@@ -42,13 +43,14 @@ print("data list : ", data_list)
 # 데이터 비교 후 붙여넣기 
 path = rf'C:\{PATH}\{company_name}-origin.xls'
 workbook_origin = excel.Workbooks.Open(path)
-sheet = workbook_origin.Sheets('에스디메디칼')
+sheet = workbook_origin.Sheets(sheet_name)
 
 max_row = find_max_row('origin')    
 curr_row = max_row - 1
 print("origin file max_row : ", max_row)
 
 for data in data_list:
+    print(data)
     is_exist_row = False
     # 데이터 형식 변경(날짜, 수량)
     date = data[0].replace("/", "-")
@@ -70,4 +72,5 @@ for data in data_list:
     curr_row = max_row - 1 # 초기화
         
 
-workbook_origin.SaveAs(rf'C:\{PATH}\{company_name}-origin-result.xls')
+workbook_origin.SaveAs(rf'C:\{PATH}\{company_name}.xls')
+excel.quit()
