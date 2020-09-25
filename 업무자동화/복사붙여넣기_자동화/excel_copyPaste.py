@@ -33,6 +33,10 @@ def find_max_row(option):
 
 max_row = find_max_row('data')
 for i in range(2, max_row):
+    # 폰트 사이즈 변경
+    sheet.Range(f'D{i}').Font.Size = 10
+    sheet.Range(f'I{i}').Font.Size = 10
+    sheet.Range(f'K{i}').Font.Size = 10
     date = sheet.Range(f'D{i}').Value # 날짜
     name = sheet.Range(f'I{i}').Value # 제품명
     count = sheet.Range(f'K{i}').Value # 수량
@@ -41,7 +45,7 @@ for i in range(2, max_row):
 print("data file max_row : ", max_row)
 print("data list : ", data_list)
 # 데이터 비교 후 붙여넣기 
-path = rf'C:\{PATH}\{company_name}-origin.xls'
+path = rf'C:\{PATH}\{company_name}(자동화).xls'
 workbook_origin = excel.Workbooks.Open(path)
 sheet = workbook_origin.Sheets(sheet_name)
 
@@ -72,5 +76,4 @@ for data in data_list:
     curr_row = max_row - 1 # 초기화
         
 
-workbook_origin.SaveAs(rf'C:\{PATH}\{company_name}.xls')
-excel.quit()
+workbook_origin.SaveAs(rf'C:\{PATH}\{company_name}(자동화).xls')
