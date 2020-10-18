@@ -10,7 +10,7 @@ import pyperclip
 import time
 import telepot
 
-driver = webdriver.Chrome()
+driver = webdriver.Chrome(r'C:\Users\Administrator\Desktop\기준\코딩교육\자료정리\파이썬\python\selenium\chromedriver.exe')
 url = "https://nid.naver.com/nidlogin.login?mode=form&url=https%3A%2F%2Fwww.naver.com"
 driver.implicitly_wait(3)
 driver.get(url)
@@ -42,20 +42,23 @@ max_page_num = 10 # 페이지 당최대 이웃 새글 수
 url = f"http://section.blog.naver.com/BlogHome.nhn?directoryNo=0&currentPage={page_num}&groupId=0"
 driver.get(url)
 
-# 좋아요 버튼 클릭 새로운 페이지의 이웃새글의 수가 10개가 아닐 경우 종료. 
+# 좋아요 버튼 클릭 새로운 페이지의 이웃새글의 수가 없을 경우 종료. 
 while True:
-    time.sleep(10)
+    time.sleep(3)
     off_btns = driver.find_elements_by_css_selector(".u_likeit_list_btn._button.off")
     
     if(len(off_btns) > 0):
         for off_btn in off_btns:
             off_btn.click()
             # 여기서 댓글 버튼을 클릭 
-            time.sleep(5)
+            time.sleep(0.5)
         page_num += 1
         url = f"http://section.blog.naver.com/BlogHome.nhn?directoryNo=0&currentPage={page_num}&groupId=0"
         driver.get(url)
     else:
+        break
+    
+    if(page_num > 12):
         break
 
 token = '1083778601:AAEm90CkozJzDT2RzCQwjzWdMJ98ztvd9iY'
