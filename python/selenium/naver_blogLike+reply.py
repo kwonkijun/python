@@ -39,8 +39,8 @@ time.sleep(2)
 
 # 블로그 홈으로 이동
 
-page_num = 1 # 페이지 번호 
-max_page_num = 2 # 마지막 페이지 번호
+page_num = 3 # 페이지 번호 
+max_page_num = 7 # 마지막 페이지 번호
 url = f"http://section.blog.naver.com/BlogHome.nhn?directoryNo=0&currentPage={page_num}&groupId=0"
 driver.get(url)
 
