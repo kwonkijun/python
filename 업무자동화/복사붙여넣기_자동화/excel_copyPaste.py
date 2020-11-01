@@ -3,7 +3,8 @@ import pyautogui as pg
 
 # 상수 선언
 MIN_ROW_NUM = 4
-PATH = 'Users\kwonkijun\Desktop'
+DATA_PATH = 'Users\kwonkijun\Desktop\자동화\데이터'
+ORIGIN_PATH = 'Users\kwonkijun\Desktop\자동화\원본'
 
 # 사용자 입력 데이터
 company_name = pg.prompt(text='제약회사명을 입력하세요', title='Message', default='입력하세요')
@@ -11,7 +12,7 @@ sheet_name = pg.prompt(text='매입회사명을 입력하세요', title='Message
 
 # 입력할 데이터 가져오기 
 excel = win32com.client.Dispatch("Excel.Application")
-path = rf'C:\{PATH}\{company_name}-data.xls'
+path = rf'C:\{DATA_PATH}\{company_name}-data.xls'
 workbook = excel.Workbooks.Open(path)
 sheet = workbook.Sheets('work')
 
@@ -45,7 +46,7 @@ for i in range(2, max_row):
 print("data file max_row : ", max_row)
 print("data list : ", data_list)
 # 데이터 비교 후 붙여넣기 
-path = rf'C:\{PATH}\{company_name}(자동화).xls'
+path = rf'C:\{ORIGIN_PATH}\{company_name}(자동화).xls'
 workbook_origin = excel.Workbooks.Open(path)
 sheet = workbook_origin.Sheets(sheet_name)
 
@@ -76,4 +77,4 @@ for data in data_list:
     curr_row = max_row - 1 # 초기화
         
 
-workbook_origin.SaveAs(rf'C:\{PATH}\{company_name}(자동화).xls')
+workbook_origin.SaveAs(rf'C:\{ORIGIN_PATH}\{company_name}(자동화).xls')
