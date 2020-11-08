@@ -1,7 +1,6 @@
 # 주의 사항 
 # 동일한 게시글에 공감/공감취소를 6회 이상 반복 시 더 이상 해당 게시글에 공감을 누를 수 없습니다. 
 # 위 기준을 3회 반복할 경우, 비정상적인 이용자로 판단하여 7일간 공감 기능이 제한됩니다. (네이버)
-
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
@@ -12,6 +11,10 @@ from my_modules import reply_maker
 import pyperclip, pyautogui
 import time
 import telepot
+
+
+page_num = int(pyautogui.prompt(text='시작페이지를 입력하세요', title='Message', default='입력하세요'))
+max_page_num = int(pyautogui.prompt(text='마지막페이지를 입력하세요', title='Message', default='입력하세요'))
 
 driver = webdriver.Chrome(r'C:\Users\Administrator\Desktop\기준\코딩교육\자료정리\파이썬\python\selenium\chromedriver.exe')
 url = "https://nid.naver.com/nidlogin.login?mode=form&url=https%3A%2F%2Fwww.naver.com"
@@ -38,9 +41,6 @@ driver.find_element_by_xpath('//*[@id="new.dontsave"]').click()
 time.sleep(2)
 
 # 블로그 홈으로 이동
-
-page_num = 3 # 페이지 번호 
-max_page_num = 7 # 마지막 페이지 번호
 url = f"http://section.blog.naver.com/BlogHome.nhn?directoryNo=0&currentPage={page_num}&groupId=0"
 driver.get(url)
 
