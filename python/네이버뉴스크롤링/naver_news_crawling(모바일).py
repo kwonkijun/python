@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup
 import urllib.parse as parse
 
 keyword = input("검색어를 입력하세요: ")
-keyword = parse.quote(keyword)
 # 네이버뉴스 URL주소
 url = f"https://m.search.naver.com/search.naver?where=m_news&sm=mtb_jum&query={keyword}"
 

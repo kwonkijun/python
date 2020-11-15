@@ -1,7 +1,7 @@
 import requests as req
 from bs4 import BeautifulSoup
 
-url = "https://search.naver.com/search.naver?where=news&sm=tab_jum&query=%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90"
+url = "https://search.naver.com/search.naver?where=news&sm=tab_jum&query=%ED%95%9C%EA%B5%AD%EA%B1%B0%EB%9E%98%EC%86%8C"
 
 response = req.get(url, headers={'User-Agent': 'Mozilla/5.0'})
 print(response.status_code)

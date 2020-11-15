@@ -25,4 +25,4 @@ write_ws = write_wb.create_sheet('결과')
 for data in datas:
 	write_ws.append(data)
 
-write_wb.save(r'C:\Users\Administrator\Desktop\기준\코딩교육\권일(파이썬레슨)\네이버금융_검색상위종목\결과.xlsx')
+write_wb.save(r'C:\Users\Administrator\Desktop\기준\코딩교육\자료정리\파이썬\0. 권일님(파이썬레슨)\네이버금융_검색상위종목\결과.xlsx')
