@@ -11,7 +11,7 @@ from my_modules import reply_maker
 import pyperclip, pyautogui
 import time
 import telepot
-
+import random
 
 page_num = int(pyautogui.prompt(text='시작페이지를 입력하세요', title='Message', default='입력하세요'))
 max_page_num = int(pyautogui.prompt(text='마지막페이지를 입력하세요', title='Message', default='입력하세요'))
@@ -80,7 +80,7 @@ while True:
 				user_name_list.append(user_name)
 				# 댓글 버튼 클릭
 				new_blog.find_element_by_css_selector("span.reply").click()
-				time.sleep(3)
+				time.sleep(random.randint(3, 4))
 				allhandles = driver.window_handles
 				print(f'Total {allhandles} windows has been opened.')
 				# 답글을 달 블로그 주소창으로 이동한다. 
@@ -89,7 +89,7 @@ while True:
 				print(f'current url => {driver.current_url}')
 				# iframe 안으로 들어감
 				driver.switch_to.frame('mainFrame')
-				time.sleep(1)
+				time.sleep(random.randint(1, 2))
 				# 댓글 버튼이 안눌렸으면 눌러준다 
 				reply_btn = driver.find_element_by_css_selector('.area_comment')
 				class_names = reply_btn.get_attribute('class')
@@ -108,11 +108,11 @@ while True:
 				reply_addName = f'{user_name}님 {reply}'
 				pyperclip.copy(reply_addName)
 				action.key_down(Keys.CONTROL).send_keys('v').key_up(Keys.CONTROL).perform()
-				time.sleep(1)
+				time.sleep(random.randint(1, 3))
 				driver.find_element_by_css_selector('.u_cbox_btn_upload').click()
-				time.sleep(1)
+				time.sleep(random.randint(1, 3))
 				driver.close()
-				time.sleep(1)
+				time.sleep(random.randint(1, 3))
 				# 다시 원래 사이트로 돌아와야 됨.
 				driver.switch_to.window(allhandles[0])
 		else:
