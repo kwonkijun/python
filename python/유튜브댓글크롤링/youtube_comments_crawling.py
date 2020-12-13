@@ -3,6 +3,7 @@ import time
 from selenium.webdriver.common.keys import Keys
 import openpyxl
 import os
+from openpyxl.styles import Alignment, Font
 # 에러 메시지 안뜨게 하기
 chrome_opt = webdriver.ChromeOptions()
 chrome_opt.add_argument('--disable-gpu')
@@ -10,7 +11,7 @@ chrome_opt.add_argument('--disable-gpu')
 driver = webdriver.Chrome(r"C:\Users\Administrator\Desktop\기준\코딩교육\자료정리\파이썬\python\selenium\chromedriver.exe", options=chrome_opt)
 driver.get("https://www.youtube.com/watch?v=UKCiuyeoYno&ab_channel=%EC%9D%BC%ED%97%A5%ED%83%80%EB%A5%B4TV")
 time.sleep(3)
-.
+
 # 스크롤 내리기
 # driver.find_element_by_css_selector("body").send_keys(Keys.PAGE_DOWN)
 
@@ -51,11 +52,18 @@ while True:
 		sheet = book.create_sheet()
 		sheet.title = title
 
+		# 열 너비 조절
+		sheet.column_dimensions["A"].width = 25
+		sheet.column_dimensions["B"].width = 80
+
 		row_num = 1
 		for i in range(len(author_list)):
 			sheet.cell(row=row_num, column=1).value = author_list[i]
+			sheet.cell(row=row_num, column=1).font = Font(size = 12, bold = True)
 			sheet.cell(row=row_num, column=2).value = content_list[i]
+			sheet.cell(row=row_num, column=2).alignment = Alignment(wrap_text = True)
 			sheet.cell(row=row_num, column=3).value = likes_list[i]
+			sheet.cell(row=row_num, column=1).font = Font(size = 12, bold = True, color="00FF6600")
 			row_num += 1
 		
 		book.save(excel_url)
