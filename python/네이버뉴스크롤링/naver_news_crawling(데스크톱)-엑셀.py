@@ -53,7 +53,7 @@ while (page_num*10 + 1) < 31:
 print("뉴스 데이터 크롤링 완료!")
 
 # 엑셀 파일 생성하기
-excel_url = r"C:\Users\Administrator\Desktop\기준\코딩교육\자료정리\파이썬\python\네이버뉴스크롤링\naver_news.xlsx"
+excel_url = r"C:\Users\스타트코딩\Desktop\main\python\python\네이버뉴스크롤링\naver_news.xlsx"
 if not os.path.exists(excel_url):
 	openpyxl.Workbook().save(excel_url)
 book = openpyxl.load_workbook(excel_url)

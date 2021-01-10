@@ -8,7 +8,7 @@ from openpyxl.styles import Alignment, Font
 chrome_opt = webdriver.ChromeOptions()
 chrome_opt.add_argument('--disable-gpu')
 
-driver = webdriver.Chrome(r"C:\Users\Administrator\Desktop\기준\코딩교육\자료정리\파이썬\python\selenium\chromedriver.exe", options=chrome_opt)
+driver = webdriver.Chrome(r"C:\chromedriver.exe", options=chrome_opt)
 driver.get("https://www.youtube.com/watch?v=UKCiuyeoYno&ab_channel=%EC%9D%BC%ED%97%A5%ED%83%80%EB%A5%B4TV")
 time.sleep(3)
 
@@ -40,7 +40,7 @@ while True:
 		print(f"{i+1}번째 댓글 {author[i].text} {content[i].text} {likes[i].text}")
 	except:
 		print("크롤링 완료!!!")		
-		excel_url = r"C:\Users\Administrator\Desktop\기준\코딩교육\자료정리\파이썬\python\유튜브댓글크롤링\youtube_result.xlsx"
+		excel_url = r"C:\Users\스타트코딩\Desktop\main\python\python\유튜브댓글크롤링\youtube_result.xlsx"
 		# 엑셀 파일 생성하기
 		if not os.path.exists(excel_url):
 			openpyxl.Workbook().save(excel_url)

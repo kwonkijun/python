@@ -1,4 +1,11 @@
-for i in range(1, 11):
-	if i == 6:
+while True:
+	select = int(input("\n메뉴를 입력하세요 \n1. 게임시작 2. 랭킹보기 3. 게임종료 \n선택:"))
+	if select == 1:
+		print("=====게임을 시작합니다=====")
+	elif select == 2:
+		print("=====랭킹보기=====")
+	elif select == 3:
+		print("=====게임을 종료합니다=====")
 		break
-	print(i, "번째 출력입니다")
+	else:
+		print("다시 입력해 주세요")
