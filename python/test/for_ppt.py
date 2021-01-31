@@ -1,9 +1,16 @@
-import pyautogui
-import time
+price_dic = {}
 
-# print(pyautogui.size())
-time.sleep(3)
-print(pyautogui.position())
+price_dic["2021/01/01"] = 85000
+price_dic["2021/01/02"] = 86000
+price_dic["2021/01/03"] = 87000
+price_dic["2021/01/04"] = 84000
+price_dic["2021/01/05"] = 85000
 
-pyautogui.moveTo(2529, 8, 2)
-pyautogui.click()
+for key in price_dic.keys():
+    print(key)
+
+for value in price_dic.values():
+    print(value)
+
+for item in price_dic.items():
+    print(item)
