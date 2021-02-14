@@ -6,10 +6,6 @@ import pyperclip
 import reply_maker
 from selenium.webdriver.common.keys import Keys
 
-# 에러 메시지 안뜨게 하기
-chrome_opt = webdriver.ChromeOptions()
-chrome_opt.add_argument('--disable-gpu')
-
 hashtag = pyautogui.prompt(text='해시태그를 입력하세요', title='Message', default='입력하세요')
 
 # 상수

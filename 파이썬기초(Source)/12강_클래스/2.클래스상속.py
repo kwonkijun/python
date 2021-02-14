@@ -1,31 +1,18 @@
-class Calculator:
-	def __init__(self, first, second):
-		self.first = first
-		self.second = second
+class Cat:
+	def __init__(self, name, age):
+		self.name = name
+		self.age = age
 
-	def add(self):
-		result = self.first + self.second
-		return result
+	def crying(self):
+		print("미야옹!")
 
-	def sub(self):
-		result = self.first - self.second
-		return result
+	def getName(self):
+		return self.name
 
-	def mul(self):
-		result = self.first * self.second
-		return result
-	
-	def div(self):
-		result = self.first / self.second
-		return result
+	def getAge(self):
+		return self.age
 
 
-class CompCalculator(Calculator):
-	def pow(self):
-		result = self.first ** self.second
-		return result
-	def div(self):
-		if self.second == 0:
-			return 0
-		else:
-			return self.first / self.second
+class myCat(Cat):
+	def crying(self):
+		print("애용!")
