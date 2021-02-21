@@ -36,7 +36,7 @@ class CpStockMst:
         vol= objStockMst.GetHeaderValue(18)   #거래량
         vol_value= objStockMst.GetHeaderValue(19)  #거래대금
         
-        if cprice > 204:
+        if cprice > 3935:
             print("==========매수가 아님=========")
         else:
             print("==========매수 진행===========")
@@ -44,7 +44,7 @@ class CpStockMst:
             if myCpTrade.order("2", code, 1, cprice):
                 print("매수 완료")
         
-        if cprice > 204:
+        if cprice > 3940:
             myCpTrade = MyCpTrade()
             if myCpTrade.order("1", code, 1, cprice):
                 print("매도 완료")
@@ -100,7 +100,7 @@ class MyCpTrade:
         objStockOrder.SetInputValue(1, acc )   #  계좌번호
         objStockOrder.SetInputValue(2, accFlag[0])   # 상품구분 - 주식 상품 중 첫번째
         objStockOrder.SetInputValue(3, code)   # 종목코드 - A004410 - 서울식품 종목
-        objStockOrder.SetInputValue(4, 1)   # 매수수량 10주
+        objStockOrder.SetInputValue(4, amount)   # 매수수량 10주
         objStockOrder.SetInputValue(5, price)   # 주문단가  - 14,100원
         objStockOrder.SetInputValue(7, "0")   # 주문 조건 구분 코드, 0: 기본 1: IOC 2:FOK
         objStockOrder.SetInputValue(8, "01")   # 주문호가 구분코드 - 01: 보통
@@ -118,5 +118,5 @@ class MyCpTrade:
 if __name__ == "__main__":
     CpMst = CpStockMst()
     while True:
-        CpMst.Request('A004410')
+        CpMst.Request('A114800')
         time.sleep(10)
