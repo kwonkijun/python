@@ -36,7 +36,8 @@ class CpStockMst:
         vol= objStockMst.GetHeaderValue(18)   #거래량
         vol_value= objStockMst.GetHeaderValue(19)  #거래대금
         
-        if cprice > 3935:
+
+        if cprice > 56400:
             print("==========매수가 아님=========")
         else:
             print("==========매수 진행===========")
@@ -44,7 +45,7 @@ class CpStockMst:
             if myCpTrade.order("2", code, 1, cprice):
                 print("매수 완료")
         
-        if cprice > 3940:
+        if cprice > 56600:
             myCpTrade = MyCpTrade()
             if myCpTrade.order("1", code, 1, cprice):
                 print("매도 완료")
@@ -118,5 +119,5 @@ class MyCpTrade:
 if __name__ == "__main__":
     CpMst = CpStockMst()
     while True:
-        CpMst.Request('A114800')
+        CpMst.Request('A004700')
         time.sleep(10)
