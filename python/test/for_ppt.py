@@ -1,18 +1,13 @@
-name = "마스터이"
-level = 5
-health = 800
-attack = 90
+import requests
+import json
 
-print("챔피언 이름:", name)
-print("레벨:", level)
-print("체력:", health)
-print("공격력:", attack)
+host = 'https://pubchem.ncbi.nlm.nih.gov/rest/pug_view'
+path = '/annotations/heading/json?heading=Acid%20Value'
+url = host + path
 
-level = level + 1
-health = 900
-attack = attack + 5
+a = requests.get(url)
+b = a.json()
 
-print("챔피언 이름:", name)
-print("레벨:", level)
-print("체력:", health)
-print("공격력:", attack)
+for data in b["Annotations"]["Annotation"]:
+    print(data)
+    # print(data["LinkedRecords"][0]["CID"][0])
