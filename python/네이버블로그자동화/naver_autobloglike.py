@@ -8,9 +8,8 @@ from selenium.webdriver.common.action_chains import ActionChains
 
 import pyperclip
 import time
-import telepot
 
-driver = webdriver.Chrome(r'C:\Users\Administrator\Desktop\기준\코딩교육\자료정리\파이썬\python\selenium\chromedriver.exe')
+driver = webdriver.Chrome(r'C:\chromedriver.exe')
 url = "https://nid.naver.com/nidlogin.login?mode=form&url=https%3A%2F%2Fwww.naver.com"
 driver.implicitly_wait(3)
 driver.get(url)
@@ -47,10 +46,11 @@ while True:
     time.sleep(3)
     off_btns = driver.find_elements_by_css_selector(".u_likeit_list_btn._button.off")
     
-    if(len(off_btns) > 0):
+    # 좋아요 누르지 않은 포스팅이 한개라도 있으면
+    if(len(off_btns) > 0): 
         for off_btn in off_btns:
+            # 좋아요 누르기
             off_btn.click()
-            # 여기서 댓글 버튼을 클릭 
             time.sleep(0.5)
         page_num += 1
         url = f"http://section.blog.naver.com/BlogHome.nhn?directoryNo=0&currentPage={page_num}&groupId=0"
@@ -58,11 +58,5 @@ while True:
     else:
         break
     
-    if(page_num > 12):
+    if(page_num > 15):
         break
-
-token = '1083778601:AAEm90CkozJzDT2RzCQwjzWdMJ98ztvd9iY'
-mc = '1021336969'
-bot = telepot.Bot(token)
-
-bot.sendMessage(mc, "블로그 이웃 새글 좋아요 작업이 완료되었습니다.")
